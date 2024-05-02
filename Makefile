@@ -2,7 +2,7 @@ NAME	:=	pipex
 
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
-HEADERS	=	-Iinclude
+HEADERS	=	-Iinclude -Ilibft
 LIBS	=	-Llibft -lft
 
 VPATH	:=	src
