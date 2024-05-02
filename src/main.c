@@ -6,14 +6,14 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:35:21 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/29 15:27:14 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/02 14:38:11 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main(int argc, char *argv[]) {
-	if (argc != 5)
+int main(int argc, char *argv[], char *envp[]) {
+	if (!argc || !argv || !envp)
 		return (1);
 
 	// Read content of file1 (argv[1])
