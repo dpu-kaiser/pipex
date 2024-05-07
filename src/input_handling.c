@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:13:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 15:17:19 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/07 15:26:08 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "pipex.h"
 #include <fcntl.h>
 #include <stdlib.h>
+#include <sys/_types/_s_ifmt.h>
 #include <unistd.h>
 
 static char	**get_cmds(int argc, char *argv[], char *envp[])
@@ -50,7 +51,7 @@ t_pxdata	*get_pxdata(int argc, char *argv[], char *envp[])
 	if (!result)
 		return (NULL); // TODO: Check if an error message needs to be sent
 	result->in_fd = open(argv[1], O_RDONLY);
-	result->out_fd = open(argv[--argc], O_WRONLY | O_CREAT | O_TRUNC);
+	result->out_fd = open(argv[--argc], O_WRONLY | O_CREAT | O_TRUNC, S_IREAD | S_IWUSR);
 	result->cmds = get_cmds(argc, argv, envp);
 	return (result);
 }
