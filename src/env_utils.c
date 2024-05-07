@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:19:31 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 16:02:38 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/07 16:36:32 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ char	*find_in_path(char *cmd, char **path)
 char	*get_cmd_path(char *cmd, char **path, char *pwd)
 {
 	char	*cur_dir;
-	char *lone_cmd;
-	int len;
-	char *res;
+	char	*lone_cmd;
+	int		len;
+	char	*res;
 
 	if (cmd[0] == '/')
-		return (cmd); // TODO: Maybe use duplicate instead,	so there will be no problem on free()
+		return (cmd);
+				// TODO: Maybe use duplicate instead,	so there will be no problem on free()
 	else if (ft_strchr(cmd, '/'))
 	{
 		cur_dir = ft_strjoin(pwd, "/");
@@ -83,7 +84,7 @@ char	*get_cmd_path(char *cmd, char **path, char *pwd)
 		res = find_in_path(lone_cmd, path);
 		if (!res)
 			return (NULL);
-		return(ft_strjoin(res, ft_strchr(cmd, ' ')));
+		return (ft_strjoin(res, ft_strchr(cmd, ' ')));
 	}
 	else
 	{

@@ -6,22 +6,22 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:35:21 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 16:04:43 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/07 16:36:39 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/_types/_pid_t.h>
 #include <unistd.h>
-#include <stdio.h>
 
-int pipex(t_pxdata *data, char *envp[])
+int	pipex(t_pxdata *data, char *envp[])
 {
-	int p[2];
-	pid_t pid;
-	char **cmd;
-	int status;
+	int		p[2];
+	pid_t	pid;
+	char	**cmd;
+	int		status;
 
 	pipe(p);
 	pid = fork();
@@ -56,12 +56,12 @@ int pipex(t_pxdata *data, char *envp[])
 	return (EXIT_SUCCESS);
 }
 
-int main(int argc, char *argv[], char *envp[]) {
-	t_pxdata *data;
+int	main(int argc, char *argv[], char *envp[])
+{
+	t_pxdata	*data;
 
 	if (argc != 5)
 		return (1);
-
 	data = get_pxdata(argc, argv, envp);
 	/* if (data->in_fd < 0 || data->out_fd < 0) */
 	/* 	return (1); */
@@ -72,5 +72,5 @@ int main(int argc, char *argv[], char *envp[]) {
 	/* 	ft_printf("CMD [%d]: %s\n", i, data->cmds[i]); */
 	/* 	i++; */
 	/* } */
-	return pipex(data, envp);
+	return (pipex(data, envp));
 }
