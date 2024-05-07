@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:13:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 15:26:08 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/07 16:04:22 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ static char	**get_cmds(int argc, char *argv[], char *envp[])
 	// TODO: Free on fail
 	pwd = get_pwd(envp);
 	i = 2;
-	while (i < argc - 1)
+	while (i < argc)
 	{
 		cmds[i - 2] = get_cmd_path(argv[i], path, pwd);
 		i++;
 	}
+    cmds[i - 2] = 0;
 	i = 0;
 	while (path[i])
 		free(path[i++]);
