@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:19:31 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 15:13:51 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/07 15:16:32 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ char	*get_cmd_path(char *cmd, char **path, char *pwd)
 	char	*cur_dir;
 
 	if (cmd[0] == '/')
-		return (cmd); // TODO: Maybe use duplicate instead,
-			so there will be no problem on free()
+		return (cmd); // TODO: Maybe use duplicate instead,	so there will be no problem on free()
 	else if (strchr(cmd, '/'))
 	{
 		cur_dir = ft_strjoin(pwd, "/");
