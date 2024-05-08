@@ -6,7 +6,7 @@ HEADERS	=	-Iinclude -Ilibft
 LIBS	=	-Llibft -lft
 
 VPATH	:=	src
-SRC		=	main.c env_utils.c input_handling.c
+SRC		=	main.c env_utils.c get_cmd_path.c input_handling.c
 
 OBJ_DIR	:=	obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

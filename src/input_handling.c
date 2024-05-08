@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:13:23 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 16:36:36 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:54:37 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static char	**get_cmds(int argc, char *argv[], char *envp[])
 	if (!cmds)
 		return (NULL);
 	path = get_split_path(envp);
-	// TODO: Free on fail
+	if (!path)
+		return (NULL);
 	pwd = get_pwd(envp);
 	i = 2;
 	while (i < argc)
@@ -37,10 +38,7 @@ static char	**get_cmds(int argc, char *argv[], char *envp[])
 		i++;
 	}
 	cmds[i - 2] = 0;
-	i = 0;
-	while (path[i])
-		free(path[i++]);
-	free(path);
+	ft_free_split(path);
 	return (cmds);
 }
 
@@ -50,7 +48,7 @@ t_pxdata	*get_pxdata(int argc, char *argv[], char *envp[])
 
 	result = malloc(sizeof(t_pxdata));
 	if (!result)
-		return (NULL); // TODO: Check if an error message needs to be sent
+		return (NULL);
 	result->in_fd = open(argv[1], O_RDONLY);
 	result->out_fd = open(argv[--argc], O_WRONLY | O_CREAT | O_TRUNC,
 			S_IREAD | S_IWUSR);

@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:19:31 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/05/07 16:36:32 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:40:01 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,38 +56,4 @@ char	*find_in_path(char *cmd, char **path)
 		path++;
 	}
 	return (NULL);
-}
-
-char	*get_cmd_path(char *cmd, char **path, char *pwd)
-{
-	char	*cur_dir;
-	char	*lone_cmd;
-	int		len;
-	char	*res;
-
-	if (cmd[0] == '/')
-		return (cmd);
-				// TODO: Maybe use duplicate instead,	so there will be no problem on free()
-	else if (ft_strchr(cmd, '/'))
-	{
-		cur_dir = ft_strjoin(pwd, "/");
-		// TODO: Free on fail
-		// TODO: Maybe check if executable, else there might be a problem...
-		return (ft_strjoin(cur_dir, cmd));
-	}
-	else if (ft_strchr(cmd, ' '))
-	{
-		len = ft_strchr(cmd, ' ') - cmd + 1;
-		lone_cmd = malloc(len * sizeof(char));
-		// TODO: Free on fail
-		ft_strlcpy(lone_cmd, cmd, len);
-		res = find_in_path(lone_cmd, path);
-		if (!res)
-			return (NULL);
-		return (ft_strjoin(res, ft_strchr(cmd, ' ')));
-	}
-	else
-	{
-		return (find_in_path(cmd, path));
-	}
 }
